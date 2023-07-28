@@ -14,48 +14,41 @@ namespace KarelMain
         }
         private static void Steps()
         {
-            World world = new World(WorldConfig.CornerBeepers, 200);
+            //initializing with sleepInterval 100 (sleep of 100ms );
+            World world = new World(WorldConfig.Steps, 100);
             Robot karel = new Robot(world);
-            
             int beeperCount = 1; //Robot starts with 1. changing this 
                                  //Does not change the number of beepers the robot has.
-
-            karel.TurnOn();
             karel.Move();
             karel.PutBeeper();
 
-            while (karel.IsFrontClear)
+            while (karel.IsFrontClear())
             {
-                if (karel.AreAnyBeepersInBag)
+                if (karel.AreAnyBeepersInBag())
                 {
                     karel.PutBeeper();
                 }
                 karel.Move();
             }
-
-            world.Log("Turning Off");
-            karel.TurnOff();
         }
+
         private static void MoveBeeperAcrossBoundary()
-        {
-            World world = new World(WorldConfig.FromJson("crossTheBoundary.json"));
+        {   //initializing with sleepInterval 80 (sleep of 80ms );
+            World world = new World(WorldConfig.FromJson("crossTheBoundary.json"), 80);
             Robot karel = new Robot(world);
-
             var streetCount = 0;
-
-            karel.TurnOn();
 
             karel.Move();
             karel.PickBeeper();
 
-            while (karel.IsFrontClear)
+            while (karel.IsFrontClear())
             {
                 karel.Move();
             }
 
             karel.TurnLeft();
 
-            while (!karel.IsRightClear)
+            while (!karel.IsRightClear())
             {
                 streetCount++;
                 karel.Move();
@@ -64,7 +57,7 @@ namespace KarelMain
             TurnRight(karel);
             karel.Move();
 
-            while (!karel.IsRightClear)
+            while (!karel.IsRightClear())
             {
                 karel.Move();
             }
@@ -78,7 +71,7 @@ namespace KarelMain
 
             karel.TurnLeft();
 
-            while (karel.IsFrontClear)
+            while (karel.IsFrontClear())
             {
                 karel.Move();
             }
@@ -88,39 +81,32 @@ namespace KarelMain
             karel.PutBeeper();
             TurnAround(karel);
             karel.Move();
-
-            karel.TurnOff();
         }
 
         private static void ClearBorderBeepers()
         {
-            var world = new World(WorldConfig.FromJson("borderBeepers.json"));
+            var world = new World(WorldConfig.FromJson("borderBeepers.json"), 80);
             var karel = new Robot(world);
+            int beeperCount = 1;
 
-            int beeperCount = 0;
-
-            karel.TurnOn();
-
-            while (karel.IsFrontClear)
+            while (karel.IsFrontClear())
             {
                 karel.Move();
             }
 
             karel.TurnLeft();
 
-            while (karel.IsNextToBeeper)
+            while (karel.IsNextToBeeper())
             {
                 world.Log($"I've got {beeperCount} beepers!");
                 beeperCount++;
                 karel.PickBeeper();
-                if (!karel.IsFrontClear)
+                if (!karel.IsFrontClear())
                 {
                     karel.TurnLeft();
                 }
                 karel.Move();
             }
-
-            karel.TurnOff();
         }
 
         private static void TurnRight(Robot karel)

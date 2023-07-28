@@ -1,3 +1,5 @@
+using System;
+
 namespace KarelTheRobot.Library
 {
     internal class Beeper : WorldObject
@@ -12,6 +14,7 @@ namespace KarelTheRobot.Library
 
         public override string ToString()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             return "\u263C";
         }
     }

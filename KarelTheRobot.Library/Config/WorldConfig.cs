@@ -38,7 +38,7 @@ namespace KarelTheRobot.Library.Config
         }
 
         public static WorldConfig FromJson(string configFileName) {
-            var text = File.ReadAllText(configFileName);
+            var text = File.ReadAllText(@"..\..\..\..\" + configFileName);
             var jsonConfig = 
                 JsonConvert.DeserializeObject<JsonConfigModel>(text);
             return new WorldConfig(

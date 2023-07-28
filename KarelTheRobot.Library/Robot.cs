@@ -11,7 +11,7 @@ namespace KarelTheRobot.Library
     /// </Summary>
     public class Robot : WorldObject
     {
-        private bool _isOn = false;
+        private bool _isOn = true;
 
         private Direction _direction = Direction.East;
         private readonly World _world;
@@ -34,50 +34,47 @@ namespace KarelTheRobot.Library
         /// <Summary>
         ///  Is the location in front of the robot free to move into?
         /// </Summary>
-        public bool IsFrontClear =>
-            ConfirmOnThen(() =>
-                _world.ObjectTypeAt(PositionAt(_direction)) != ObjectType.Wall);
+        public bool IsFrontClear() =>
+                _world.ObjectTypeAt(PositionAt(_direction)) != ObjectType.Wall;
         /// <Summary>
         ///  Is the location to the left of the robot free to move into?
         /// </Summary>
-        public bool IsLeftClear =>
-            ConfirmOnThen(() =>
-                _world.ObjectTypeAt(PositionAt(LeftDirection)) != ObjectType.Wall);
+        public bool IsLeftClear() =>
+                _world.ObjectTypeAt(PositionAt(LeftDirection)) != ObjectType.Wall;
         /// <Summary>
         ///  Is the location to the right of the robot free to move into?
         /// </Summary>
-        public bool IsRightClear =>
-            ConfirmOnThen(() =>
-                _world.ObjectTypeAt(PositionAt(RightDirection)) != ObjectType.Wall);
+        public bool IsRightClear() =>
+                _world.ObjectTypeAt(PositionAt(RightDirection)) != ObjectType.Wall;
 
         /// <Summary>
         ///  Is there a beeper at the robot's current location?
         /// </Summary>
-        public bool IsNextToBeeper =>
-            ConfirmOnThen(() =>
-                _world.ObjectTypeAt(Street, Avenue) == ObjectType.Beeper);
+        public bool IsNextToBeeper() =>
+                _world.ObjectTypeAt(Street, Avenue) == ObjectType.Beeper;
 
         /// <Summary>
         ///  Are there any beepers in the robot's bag?
         /// </Summary>
-        public bool AreAnyBeepersInBag => ConfirmOnThen(() => _bag.Any());
+        public bool AreAnyBeepersInBag() => _bag.Any();
+        //public bool AreAnyBeepersInBag() => ConfirmOnThen(()() => _bag.Any());
 
         /// <Summary>
         ///  Is the robot facing north? (i.e. toward the top of the screen)
         /// </Summary>
-        public bool IsFacingNorth => ConfirmOnThen(() => IsFacing(Direction.North));
+        public bool IsFacingNorth() => IsFacing(Direction.North);
         /// <Summary>
         ///  Is the robot facing south? (i.e. toward the bottom of the screen)
         /// </Summary>
-        public bool IsFacingSouth => ConfirmOnThen(() => IsFacing(Direction.South));
+        public bool IsFacingSouth() => IsFacing(Direction.South);
         /// <Summary>
         ///  Is the robot facing east? (i.e. toward the right of the screen)
         /// </Summary>
-        public bool IsFacingEast => ConfirmOnThen(() => IsFacing(Direction.East));
+        public bool IsFacingEast() => IsFacing(Direction.East);
         /// <Summary>
         ///  Is the robot facing west? (i.e. toward the left of the screen)
         /// </Summary>
-        public bool IsFacingWest => ConfirmOnThen(() => IsFacing(Direction.West));
+        public bool IsFacingWest() => IsFacing(Direction.West);
 
         /// <Summary>
         ///  Power up the robot. 
@@ -176,6 +173,7 @@ namespace KarelTheRobot.Library
 
         public override string ToString()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             switch (_direction)
             {
                 case Direction.North:
@@ -281,11 +279,12 @@ namespace KarelTheRobot.Library
         {
             AppDomain.CurrentDomain.ProcessExit += (sender, args) =>
             {
-                if (_isOn)
-                {
-                    throw new RobotDestructionException(
-                        "Please turn the robot off before exiting the program.");
-                }
+                // Muted this exception throw. It has not use on a windows env.
+                //if (_isOn)
+                //{
+                //    throw new RobotDestructionException(
+                //        "Please turn the robot off before exiting the program.");
+                //}
             };
         }
     }

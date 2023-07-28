@@ -163,7 +163,10 @@ namespace KarelTheRobot.Library
                 Console.SetCursorPosition(
                     wo.Avenue + padding,
                     (_streetCount - wo.Street) + padding);
+                var prevFgColor = Console.ForegroundColor;
+                
                 Console.Write(wo);
+                Console.ForegroundColor = prevFgColor;
             }
 
             Console.SetCursorPosition(0, _streetCount + padding * 2);
