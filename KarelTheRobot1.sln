@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KarelTheRobot.Library", "KarelTheRobot.Library\KarelTheRobot.Library.csproj", "{D073F225-24FF-449D-8FF2-09C30420EDFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarelMain", "KarelMain3\KarelMain.csproj", "{156F03EC-71F8-4FC9-A0BE-4715B7A48939}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA14D1F4-8555-4570-89E1-08E7B10D88E5}"
+	ProjectSection(SolutionItems) = preProject
+		borderBeepers.json = borderBeepers.json
+		crossTheBoundary.json = crossTheBoundary.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D073F225-24FF-449D-8FF2-09C30420EDFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D073F225-24FF-449D-8FF2-09C30420EDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D073F225-24FF-449D-8FF2-09C30420EDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D073F225-24FF-449D-8FF2-09C30420EDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156F03EC-71F8-4FC9-A0BE-4715B7A48939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156F03EC-71F8-4FC9-A0BE-4715B7A48939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156F03EC-71F8-4FC9-A0BE-4715B7A48939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156F03EC-71F8-4FC9-A0BE-4715B7A48939}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DB9D958-3506-4CAD-BA17-88B02036FC92}
+	EndGlobalSection
+EndGlobal
